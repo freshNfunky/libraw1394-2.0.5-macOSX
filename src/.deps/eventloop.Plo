@@ -32,8 +32,7 @@ eventloop.lo: eventloop.c ../config.h /usr/include/unistd.h \
   /usr/include/_types/_uintmax_t.h /usr/include/libkern/_OSByteOrder.h \
   /usr/include/libkern/i386/_OSByteOrder.h \
   /usr/include/libkern/i386/OSByteOrder.h \
-  /usr/include/sys/_types/_os_inline.h /usr/include/errno.h \
-  /usr/include/sys/errno.h /usr/include/sys/_types/_errno_t.h raw1394.h \
+  /usr/include/sys/_types/_os_inline.h errno.h errno-base.h raw1394.h \
   /usr/include/sys/types.h /usr/include/machine/types.h \
   /usr/include/i386/types.h /usr/include/machine/endian.h \
   /usr/include/i386/endian.h /usr/include/sys/_endian.h \
@@ -44,6 +43,7 @@ eventloop.lo: eventloop.c ../config.h /usr/include/unistd.h \
   /usr/include/sys/_types/_ino64_t.h /usr/include/sys/_types/_key_t.h \
   /usr/include/sys/_types/_nlink_t.h /usr/include/sys/_types/_id_t.h \
   /usr/include/sys/_types/_clock_t.h /usr/include/sys/_types/_rsize_t.h \
+  /usr/include/sys/_types/_errno_t.h \
   /usr/include/sys/_pthread/_pthread_attr_t.h \
   /usr/include/sys/_pthread/_pthread_cond_t.h \
   /usr/include/sys/_pthread/_pthread_condattr_t.h \
@@ -67,7 +67,7 @@ eventloop.lo: eventloop.c ../config.h /usr/include/unistd.h \
   /usr/include/sys/_types/_ucontext.h /usr/include/sys/resource.h \
   /usr/include/alloca.h /usr/include/sys/_types/_ct_rune_t.h \
   /usr/include/sys/_types/_rune_t.h /usr/include/sys/_types/_wchar_t.h \
-  firewire-cdev.h
+  ../src/firewire-cdev.h firewire-constants.h
 
 ../config.h:
 
@@ -191,11 +191,9 @@ eventloop.lo: eventloop.c ../config.h /usr/include/unistd.h \
 
 /usr/include/sys/_types/_os_inline.h:
 
-/usr/include/errno.h:
+errno.h:
 
-/usr/include/sys/errno.h:
-
-/usr/include/sys/_types/_errno_t.h:
+errno-base.h:
 
 raw1394.h:
 
@@ -232,6 +230,8 @@ raw1394.h:
 /usr/include/sys/_types/_clock_t.h:
 
 /usr/include/sys/_types/_rsize_t.h:
+
+/usr/include/sys/_types/_errno_t.h:
 
 /usr/include/sys/_pthread/_pthread_attr_t.h:
 
@@ -307,4 +307,6 @@ fw.h:
 
 /usr/include/sys/_types/_wchar_t.h:
 
-firewire-cdev.h:
+../src/firewire-cdev.h:
+
+firewire-constants.h:

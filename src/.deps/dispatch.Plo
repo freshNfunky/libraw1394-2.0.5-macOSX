@@ -1,9 +1,7 @@
-dispatch.lo: dispatch.c ../config.h /usr/include/errno.h \
-  /usr/include/sys/errno.h /usr/include/sys/cdefs.h \
-  /usr/include/sys/_symbol_aliasing.h \
-  /usr/include/sys/_posix_availability.h \
-  /usr/include/sys/_types/_errno_t.h raw1394.h /usr/include/sys/types.h \
-  /usr/include/sys/appleapiopts.h /usr/include/machine/types.h \
+dispatch.lo: dispatch.c ../config.h errno.h errno-base.h raw1394.h \
+  /usr/include/sys/types.h /usr/include/sys/appleapiopts.h \
+  /usr/include/sys/cdefs.h /usr/include/sys/_symbol_aliasing.h \
+  /usr/include/sys/_posix_availability.h /usr/include/machine/types.h \
   /usr/include/i386/types.h /usr/include/i386/_types.h \
   /usr/include/sys/_types/_int8_t.h /usr/include/sys/_types/_int16_t.h \
   /usr/include/sys/_types/_int32_t.h /usr/include/sys/_types/_int64_t.h \
@@ -26,7 +24,8 @@ dispatch.lo: dispatch.c ../config.h /usr/include/errno.h \
   /usr/include/sys/_types/_ssize_t.h /usr/include/sys/_types/_time_t.h \
   /usr/include/sys/_types/_useconds_t.h \
   /usr/include/sys/_types/_suseconds_t.h \
-  /usr/include/sys/_types/_rsize_t.h /usr/include/sys/_types/_fd_def.h \
+  /usr/include/sys/_types/_rsize_t.h /usr/include/sys/_types/_errno_t.h \
+  /usr/include/sys/_types/_fd_def.h \
   /usr/include/sys/_types/_fd_setsize.h \
   /usr/include/sys/_types/_fd_set.h /usr/include/sys/_types/_fd_clr.h \
   /usr/include/sys/_types/_fd_zero.h /usr/include/sys/_types/_fd_isset.h \
@@ -63,27 +62,26 @@ dispatch.lo: dispatch.c ../config.h /usr/include/errno.h \
   /usr/include/sys/_types/_rune_t.h /usr/include/sys/_types/_wchar_t.h \
   /usr/include/sys/_types/_null.h /usr/include/libkern/OSByteOrder.h \
   /usr/include/libkern/i386/OSByteOrder.h \
-  /usr/include/sys/_types/_os_inline.h firewire-cdev.h
+  /usr/include/sys/_types/_os_inline.h ../src/firewire-cdev.h \
+  firewire-constants.h
 
 ../config.h:
 
-/usr/include/errno.h:
+errno.h:
 
-/usr/include/sys/errno.h:
-
-/usr/include/sys/cdefs.h:
-
-/usr/include/sys/_symbol_aliasing.h:
-
-/usr/include/sys/_posix_availability.h:
-
-/usr/include/sys/_types/_errno_t.h:
+errno-base.h:
 
 raw1394.h:
 
 /usr/include/sys/types.h:
 
 /usr/include/sys/appleapiopts.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/sys/_symbol_aliasing.h:
+
+/usr/include/sys/_posix_availability.h:
 
 /usr/include/machine/types.h:
 
@@ -162,6 +160,8 @@ raw1394.h:
 /usr/include/sys/_types/_suseconds_t.h:
 
 /usr/include/sys/_types/_rsize_t.h:
+
+/usr/include/sys/_types/_errno_t.h:
 
 /usr/include/sys/_types/_fd_def.h:
 
@@ -269,8 +269,6 @@ fw.h:
 
 /usr/include/sys/_types/_timeval.h:
 
-firewire-cdev.h:
-
 /usr/include/alloca.h:
 
 /usr/include/sys/_types/_ct_rune_t.h:
@@ -286,3 +284,7 @@ firewire-cdev.h:
 /usr/include/libkern/i386/OSByteOrder.h:
 
 /usr/include/sys/_types/_os_inline.h:
+
+../src/firewire-cdev.h:
+
+firewire-constants.h:

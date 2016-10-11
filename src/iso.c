@@ -24,6 +24,7 @@
 #include "raw1394.h"
 #include "kernel-raw1394.h"
 #include "raw1394_private.h"
+#include "ieee1394-ioctl.h"
 
 /* This implements
    x = (x+1) % n

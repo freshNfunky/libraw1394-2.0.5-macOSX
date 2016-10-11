@@ -28,8 +28,9 @@ libraw1394_la_SOURCES =   \
 	fw.c              \
 	fw-iso.c          \
 	fw.h							\
-
+	firewire-cdev.h		\
+	firewire-constants.h
 
 
 # headers to be installed
-pkginclude_HEADERS = raw1394.h csr.h ieee1394.h firewire-cdev.h
+pkginclude_HEADERS = raw1394.h csr.h ieee1394.h

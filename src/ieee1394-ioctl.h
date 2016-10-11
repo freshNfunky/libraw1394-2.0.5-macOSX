@@ -12,6 +12,11 @@
 #endif
 	#include <sys/ioctl.h>
 	#include <sys/types.h>
+
+	#define _IOC_NONE        1U
+	#define _IOC_READ        2U
+	#define _IOC_WRITE       4U
+
 #else
 
 /* DV1394 Gets 10 */

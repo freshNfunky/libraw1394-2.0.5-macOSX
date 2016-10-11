@@ -34,7 +34,9 @@
 #include "csr.h"
 #include "kernel-raw1394.h"
 #include "raw1394_private.h"
+#include "errno.h"
 
+extern int errno;
 
 static int bus_reset_default(struct raw1394_handle *handle, unsigned int gen)
 {
@@ -65,8 +67,8 @@ static int arm_tag_handler_default(struct raw1394_handle *handle, unsigned long 
         if (tag) {
                 rh = (struct raw1394_arm_reqhandle *)tag;
                 arm_req_resp  = (struct raw1394_arm_request_response *) data;
-                return rh->arm_callback(handle, arm_req_resp, 
-                                        requested_length, rh->pcontext, 
+                return rh->arm_callback(handle, arm_req_resp,
+                                        requested_length, rh->pcontext,
                                         request_type);
         } else {
                 /* error ... */
@@ -250,7 +252,7 @@ void *raw1394_get_userdata(struct raw1394_handle *handle)
 		return handle->mode.ieee1394->userdata;
 }
 
-int ieee1394_get_port_info(struct ieee1394_handle *handle, 
+int ieee1394_get_port_info(struct ieee1394_handle *handle,
                           struct raw1394_portinfo *pinf, int maxports)
 {
         struct raw1394_request req;
@@ -259,8 +261,8 @@ int ieee1394_get_port_info(struct ieee1394_handle *handle,
         req.type = RAW1394_REQ_LIST_CARDS;
         req.generation = handle->generation;
         /* IMPORTANT: raw1394 will be writing directly into the memory you
-           provide in pinf. The viability of this approach assumes that the 
-           structure of libraw1394's raw1394_portinfo and the kernel's 
+           provide in pinf. The viability of this approach assumes that the
+           structure of libraw1394's raw1394_portinfo and the kernel's
            raw1394_khost_list structs are the same!!
         */
         req.recvb = ptr2int(pinf);
@@ -355,7 +357,7 @@ int ieee1394_reset_bus_new(struct ieee1394_handle *handle, int type)
         req.type = RAW1394_REQ_RESET_BUS;
         req.generation = handle->generation;
         req.misc = type;
-	
+
         if (write(handle->fd, &req, sizeof(req)) < 0) return -1;
 
         return 0; /* success */
@@ -367,7 +369,7 @@ int raw1394_reset_bus(struct raw1394_handle *handle)
         return raw1394_reset_bus_new (handle, RAW1394_LONG_RESET);
 }
 
-int ieee1394_busreset_notify (struct ieee1394_handle *handle, 
+int ieee1394_busreset_notify (struct ieee1394_handle *handle,
                              int off_on_switch)
 {
         struct raw1394_request req;
@@ -428,45 +430,45 @@ int ieee1394_bandwidth_modify (raw1394handle_t handle, unsigned int bandwidth,
         quadlet_t buffer, compare, swap, new;
         int retry = 3;
         int result;
-        
+
         if (bandwidth == 0)
                 return 0;
-        
+
         /* Reading current bandwidth usage from IRM. */
         result = raw1394_read (handle, raw1394_get_irm_id (handle),
                 CSR_REGISTER_BASE + CSR_BANDWIDTH_AVAILABLE,
                 sizeof (quadlet_t), &buffer);
         if (result < 0)
                 return -1;
-  
+
         buffer = ntohl (buffer);
         compare = buffer;
-  
+
         while (retry > 0) {
                 if (mode == RAW1394_MODIFY_ALLOC ) {
                         if (compare < bandwidth) {
                                 return -1;
                         }
-  
+
                         swap = compare - bandwidth;
                 }
                 else {
                         swap = compare + bandwidth;
-  
+
                         if( swap > MAXIMUM_BANDWIDTH ) {
                                 swap = MAXIMUM_BANDWIDTH;
                         }
                 }
-                
+
                 result = raw1394_lock (handle, raw1394_get_irm_id (handle),
-                                        CSR_REGISTER_BASE + CSR_BANDWIDTH_AVAILABLE, 
+                                        CSR_REGISTER_BASE + CSR_BANDWIDTH_AVAILABLE,
                                         RAW1394_EXTCODE_COMPARE_SWAP, ntohl(swap), ntohl(compare),
                                         &new);
                 if (result < 0)
                         return -1;
-                
+
                 new = ntohl (new);
-                
+
                 if (new != compare) {
                         compare = new;
                         retry--;
@@ -479,7 +481,7 @@ int ieee1394_bandwidth_modify (raw1394handle_t handle, unsigned int bandwidth,
                         return 0;
                 }
         }
-  
+
         return 0;
 }
 
@@ -491,7 +493,7 @@ int ieee1394_channel_modify (raw1394handle_t handle, unsigned int channel,
         nodeaddr_t addr = CSR_REGISTER_BASE;
         unsigned int c = channel;
         quadlet_t compare, swap = 0, new;
-        
+
         if (c > 31 && c < 64) {
                 addr += CSR_CHANNELS_AVAILABLE_LO;
                 c -= 32;
@@ -500,14 +502,14 @@ int ieee1394_channel_modify (raw1394handle_t handle, unsigned int channel,
         else
                 return -1;
         c = 31 - c;
-  
-        result = raw1394_read (handle, raw1394_get_irm_id (handle), addr, 
+
+        result = raw1394_read (handle, raw1394_get_irm_id (handle), addr,
                 sizeof (quadlet_t), &buffer);
         if (result < 0)
                 return -1;
-        
+
         buffer = ntohl (buffer);
-  
+
         if ( mode == RAW1394_MODIFY_ALLOC ) {
                 if( (buffer & (1 << c)) == 0 )
                         return -1;
@@ -518,13 +520,13 @@ int ieee1394_channel_modify (raw1394handle_t handle, unsigned int channel,
                         return -1;
                 swap = htonl (buffer | (1 << c));
         }
-  
+
         compare = htonl (buffer);
-  
+
         result = raw1394_lock (handle, raw1394_get_irm_id (handle), addr,
                                 RAW1394_EXTCODE_COMPARE_SWAP, swap, compare, &new);
         if ( (result < 0) || (new != compare) )
                 return -1;
-  
+
         return 0;
 }

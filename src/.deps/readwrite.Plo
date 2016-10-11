@@ -21,10 +21,9 @@ readwrite.lo: readwrite.c ../config.h /usr/include/unistd.h \
   /usr/include/sys/_types/_fd_isset.h /usr/include/sys/_types/_fd_zero.h \
   /usr/include/sys/_types/_fd_copy.h /usr/include/sys/_select.h \
   /usr/include/sys/_types/_dev_t.h /usr/include/sys/_types/_mode_t.h \
-  /usr/include/sys/_types/_uuid_t.h /usr/include/gethostuuid.h \
-  /usr/include/errno.h /usr/include/sys/errno.h \
-  /usr/include/sys/_types/_errno_t.h /usr/include/string.h \
-  /usr/include/sys/_types/_rsize_t.h /usr/include/strings.h \
+  /usr/include/sys/_types/_uuid_t.h /usr/include/gethostuuid.h errno.h \
+  errno-base.h /usr/include/string.h /usr/include/sys/_types/_rsize_t.h \
+  /usr/include/sys/_types/_errno_t.h /usr/include/strings.h \
   /usr/include/secure/_string.h /usr/include/secure/_common.h raw1394.h \
   /usr/include/sys/types.h /usr/include/machine/types.h \
   /usr/include/i386/types.h /usr/include/sys/_types/_int8_t.h \
@@ -70,7 +69,8 @@ readwrite.lo: readwrite.c ../config.h /usr/include/unistd.h \
   /usr/include/sys/_types/_rune_t.h /usr/include/sys/_types/_wchar_t.h \
   /usr/include/libkern/OSByteOrder.h \
   /usr/include/libkern/i386/OSByteOrder.h \
-  /usr/include/sys/_types/_os_inline.h firewire-cdev.h
+  /usr/include/sys/_types/_os_inline.h ../src/firewire-cdev.h \
+  firewire-constants.h
 
 ../config.h:
 
@@ -160,15 +160,15 @@ readwrite.lo: readwrite.c ../config.h /usr/include/unistd.h \
 
 /usr/include/gethostuuid.h:
 
-/usr/include/errno.h:
+errno.h:
 
-/usr/include/sys/errno.h:
-
-/usr/include/sys/_types/_errno_t.h:
+errno-base.h:
 
 /usr/include/string.h:
 
 /usr/include/sys/_types/_rsize_t.h:
+
+/usr/include/sys/_types/_errno_t.h:
 
 /usr/include/strings.h:
 
@@ -318,4 +318,6 @@ fw.h:
 
 /usr/include/sys/_types/_os_inline.h:
 
-firewire-cdev.h:
+../src/firewire-cdev.h:
+
+firewire-constants.h:

@@ -28,7 +28,8 @@
   // #include <CoreFoundation/CoreFoundation.h>
   // #include <IOKit/IOKitLib.h>
   // #include <IOKit/firewire/IOFireWireLib.h>
-  #include "firewire-cdev.h"
+  //#define _LINUX_FIREWIRE_CDEV_H 0
+  #include "src/firewire-cdev.h"
 	#define bswap_16 OSSwapInt16
 	#define bswap_32 OSSwapInt32
 	#define bswap_64 OSSwapInt64

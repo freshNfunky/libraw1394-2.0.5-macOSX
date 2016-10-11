@@ -1,11 +1,9 @@
-arm.lo: arm.c ../config.h /usr/include/errno.h /usr/include/sys/errno.h \
-  /usr/include/sys/cdefs.h /usr/include/sys/_symbol_aliasing.h \
-  /usr/include/sys/_posix_availability.h \
-  /usr/include/sys/_types/_errno_t.h /usr/include/unistd.h \
+arm.lo: arm.c ../config.h errno.h errno-base.h /usr/include/unistd.h \
   /usr/include/_types.h /usr/include/sys/_types.h \
-  /usr/include/machine/_types.h /usr/include/i386/_types.h \
-  /usr/include/sys/_pthread/_pthread_types.h /usr/include/sys/unistd.h \
-  /usr/include/sys/_types/_posix_vdisable.h \
+  /usr/include/sys/cdefs.h /usr/include/sys/_symbol_aliasing.h \
+  /usr/include/sys/_posix_availability.h /usr/include/machine/_types.h \
+  /usr/include/i386/_types.h /usr/include/sys/_pthread/_pthread_types.h \
+  /usr/include/sys/unistd.h /usr/include/sys/_types/_posix_vdisable.h \
   /usr/include/sys/_types/_seek_set.h /usr/include/sys/_types/_size_t.h \
   /usr/include/_types/_uint64_t.h /usr/include/Availability.h \
   /usr/include/AvailabilityInternal.h /usr/include/sys/_types/_ssize_t.h \
@@ -45,9 +43,10 @@ arm.lo: arm.c ../config.h /usr/include/errno.h /usr/include/sys/errno.h \
   /usr/include/sys/_types/_ct_rune_t.h /usr/include/sys/_types/_rune_t.h \
   /usr/include/sys/_types/_wchar_t.h /usr/include/machine/types.h \
   /usr/include/i386/types.h /usr/include/string.h \
-  /usr/include/sys/_types/_rsize_t.h /usr/include/strings.h \
-  /usr/include/secure/_string.h /usr/include/secure/_common.h raw1394.h \
-  /usr/include/sys/types.h /usr/include/sys/_types/_blkcnt_t.h \
+  /usr/include/sys/_types/_rsize_t.h /usr/include/sys/_types/_errno_t.h \
+  /usr/include/strings.h /usr/include/secure/_string.h \
+  /usr/include/secure/_common.h raw1394.h /usr/include/sys/types.h \
+  /usr/include/sys/_types/_blkcnt_t.h \
   /usr/include/sys/_types/_blksize_t.h \
   /usr/include/sys/_types/_in_addr_t.h \
   /usr/include/sys/_types/_in_port_t.h /usr/include/sys/_types/_ino_t.h \
@@ -69,27 +68,26 @@ arm.lo: arm.c ../config.h /usr/include/errno.h /usr/include/sys/errno.h \
   /usr/include/sys/sockio.h raw1394_private.h csr.h fw.h \
   /usr/include/libkern/OSByteOrder.h \
   /usr/include/libkern/i386/OSByteOrder.h \
-  /usr/include/sys/_types/_os_inline.h firewire-cdev.h
+  /usr/include/sys/_types/_os_inline.h ../src/firewire-cdev.h \
+  firewire-constants.h
 
 ../config.h:
 
-/usr/include/errno.h:
+errno.h:
 
-/usr/include/sys/errno.h:
-
-/usr/include/sys/cdefs.h:
-
-/usr/include/sys/_symbol_aliasing.h:
-
-/usr/include/sys/_posix_availability.h:
-
-/usr/include/sys/_types/_errno_t.h:
+errno-base.h:
 
 /usr/include/unistd.h:
 
 /usr/include/_types.h:
 
 /usr/include/sys/_types.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/sys/_symbol_aliasing.h:
+
+/usr/include/sys/_posix_availability.h:
 
 /usr/include/machine/_types.h:
 
@@ -241,13 +239,13 @@ arm.lo: arm.c ../config.h /usr/include/errno.h /usr/include/sys/errno.h \
 
 /usr/include/sys/_types/_rsize_t.h:
 
+/usr/include/sys/_types/_errno_t.h:
+
 /usr/include/strings.h:
 
 /usr/include/secure/_string.h:
 
 /usr/include/secure/_common.h:
-
-firewire-cdev.h:
 
 raw1394.h:
 
@@ -318,3 +316,7 @@ fw.h:
 /usr/include/libkern/i386/OSByteOrder.h:
 
 /usr/include/sys/_types/_os_inline.h:
+
+../src/firewire-cdev.h:
+
+firewire-constants.h:
