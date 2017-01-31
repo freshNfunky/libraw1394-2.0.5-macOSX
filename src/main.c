@@ -36,8 +36,6 @@
 #include "raw1394_private.h"
 #include "errno.h"
 
-extern int errno;
-
 static int bus_reset_default(struct raw1394_handle *handle, unsigned int gen)
 {
         raw1394_update_generation(handle, gen);
